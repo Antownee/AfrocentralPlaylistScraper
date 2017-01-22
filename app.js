@@ -1,13 +1,9 @@
-var express = require('express');
 var cheerio = require('cheerio');
 var request = require('request');
 
-var app = express();
-
 const url = "http://hbr.co.ke";
 
-app.get("/", (req, res, next) => {
-
+setInterval(() => {
     request(url, (err, resp, html) => {
         if (err) { throw new Error(err); }
 
@@ -19,11 +15,7 @@ app.get("/", (req, res, next) => {
         console.log(`${showTitle} - ${songTitle}`);
     });
 
-    next();
 
-})
+}, 2 * 60 * 1000)
 
-
-app.listen(3000, () => {
-    console.log("Scraper started on port 3000");
-})
+console.log("Scraper started");
